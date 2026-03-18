@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Montalvin Manor Community Scholarship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f5f0e8;
+      --bark: #3d2b1f;
+      --rust: #b5472a;
+      --gold: #c8923a;
+      --sage: #5a7a5e;
+      --divider: rgba(61,43,31,0.12);
+      --text: #2a1e14;
+      --muted: #7a6a58;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ── HEADER ── */
+    .sch-header {
+      text-align: center;
+      border-top: 4px solid var(--bark);
+      border-bottom: 1px solid var(--divider);
+      padding: 2.8rem 1rem 2.4rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .sch-header .eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--rust); font-weight: 500; margin-bottom: 1rem;
+    }
+    .sch-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem; font-weight: 800;
+      color: var(--bark); line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .sch-header .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-style: italic;
+      color: var(--rust); margin-bottom: 1.5rem;
+    }
+    .award-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--bark); color: #f5f0e8;
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500;
+    }
+    .award-badge .amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 800; color: var(--gold);
+    }
+
+    /* ── SECTION BLOCKS ── */
+    .sch-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--divider);
+    }
+    .sch-section:last-child { border-bottom: none; }
+    .section-label {
+      font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--rust); font-weight: 500; margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 700; color: var(--bark);
+      margin-bottom: 1rem; line-height: 1.3;
+    }
+    p {
+      font-size: 0.95rem; line-height: 1.75; color: #3a2c20;
+      margin-bottom: 0.85rem;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: white; border-left: 3px solid var(--gold);
+      padding: 1.4rem 1.6rem; margin: 1.2rem 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .highlight-box p { margin: 0; font-size: 1rem; color: var(--bark); }
+
+    /* ── TWO COLUMN KEY INFO ── */
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin: 1.2rem 0;
+    }
+    .info-cell {
+      background: white; padding: 1rem 1.2rem;
+      border: 1px solid var(--divider); border-radius: 2px;
+    }
+    .info-cell .info-label {
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.25rem;
+    }
+    .info-cell .info-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem; font-weight: 600; color: var(--bark);
+    }
+
+    /* ── ELIGIBILITY LIST ── */
+    .eligibility-list {
+      list-style: none; margin: 1rem 0; padding: 0;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .eligibility-list li {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      font-size: 0.93rem; line-height: 1.6; color: #3a2c20;
+    }
+    .eligibility-list li::before {
+      content: '✓';
+      color: var(--sage); font-weight: 700; font-size: 0.85rem;
+      margin-top: 0.1rem; flex-shrink: 0;
+    }
+
+    /* ── REQUIRED MATERIALS ── */
+    .materials-list {
+      list-style: none; margin: 1rem 0; padding: 0;
+      counter-reset: mat-counter;
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .materials-list li {
+      counter-increment: mat-counter;
+      display: flex; gap: 1rem; align-items: flex-start;
+      font-size: 0.93rem; line-height: 1.65; color: #3a2c20;
+    }
+    .materials-list li::before {
+      content: counter(mat-counter);
+      background: var(--bark); color: var(--cream);
+      min-width: 1.5rem; height: 1.5rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .materials-list li strong { color: var(--bark); }
+
+    /* ── TIMELINE TABLE ── */
+    .timeline-table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0;
+    }
+    .timeline-table th {
+      background: var(--bark); color: var(--cream);
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.7rem 1rem; text-align: left; font-weight: 500;
+    }
+    .timeline-table td {
+      padding: 0.75rem 1rem; font-size: 0.88rem;
+      border-bottom: 1px solid var(--divider); color: #3a2c20;
+      vertical-align: top;
+    }
+    .timeline-table tr:last-child td { border-bottom: none; }
+    .timeline-table tr:nth-child(even) td { background: rgba(255,255,255,0.5); }
+    .timeline-table td:first-child { font-weight: 500; color: var(--bark); white-space: nowrap; }
+
+    /* ── ESSAY PROMPTS ── */
+    .prompt-card {
+      background: white; border: 1px solid var(--divider);
+      padding: 1.2rem 1.4rem; margin-bottom: 0.8rem;
+      border-radius: 2px;
+    }
+    .prompt-card .prompt-num {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--rust); font-weight: 500; margin-bottom: 0.35rem;
+    }
+    .prompt-card p { font-size: 0.92rem; color: #3a2c20; margin: 0; line-height: 1.65; }
+
+    /* ── SELECTION CRITERIA ── */
+    .criteria-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.7rem 0; border-bottom: 1px solid var(--divider);
+      font-size: 0.88rem;
+    }
+    .criteria-row:last-child { border-bottom: none; }
+    .criteria-name { color: #3a2c20; }
+    .criteria-weight {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; color: var(--bark); font-size: 1rem;
+    }
+    .criteria-bar-wrap { width: 100px; height: 4px; background: var(--divider); border-radius: 2px; margin-left: 1rem; }
+    .criteria-bar { height: 4px; background: var(--gold); border-radius: 2px; }
+
+    /* ── CONTACT / SUBMIT BOX ── */
+    .submit-box {
+      background: var(--bark); color: var(--cream);
+      padding: 2rem 2.2rem; border-radius: 2px;
+      margin-top: 1.5rem;
+    }
+    .submit-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: white; margin-bottom: 0.7rem;
+    }
+    .submit-box p { color: rgba(245,240,232,0.8); font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .submit-box strong { color: var(--gold); }
+    .submit-box .submit-note {
+      margin-top: 1rem; padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.8rem; color: rgba(245,240,232,0.55);
+    }
+
+    /* ── FOOTER RULE ── */
+    .sch-footer {
+      text-align: center; padding-top: 2rem;
+      font-size: 0.75rem; color: var(--muted); line-height: 1.7;
+    }
+
+    /* ── COPY TOOLBAR ── */
+    .copy-toolbar {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end;
+    }
+    .copy-btn {
+      background: var(--bark); color: var(--cream);
+      border: none; cursor: pointer; padding: 0.65rem 1.2rem;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: var(--rust); }
+    .copy-btn.success { background: var(--sage); }
+
+    @media (max-width: 600px) {
+      .info-grid { grid-template-columns: 1fr; }
+      body { padding: 1.5rem 1rem 4rem; }
+      .sch-header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- COPY TOOLBAR -->
+<div class="copy-toolbar">
+  <button class="copy-btn" onclick="copyAll(this)">⎘ Copy All Text</button>
+  <button class="copy-btn" id="copy-html-btn" onclick="copyHTML(this)">⎘ Copy HTML</button>
+</div>
+
+<!-- ── SCHOLARSHIP HEADER ── -->
+<div class="sch-header">
+  <div class="eyebrow">Contra Costa County, California</div>
+  <h1>Montalvin Manor<br>Community Scholarship</h1>
+  <div class="subtitle">Investing in the Next Generation of Community Leaders</div>
+  <div class="award-badge">
+    Annual Award &nbsp;·&nbsp; <span class="amount">$1,000</span> &nbsp;·&nbsp; Renewable
+  </div>
+</div>
+
+<!-- ── ABOUT THE SCHOLARSHIP ── -->
+<div class="sch-section">
+  <div class="section-label">About the Award</div>
+  <h2>Our Mission & Purpose</h2>
+  <p>
+    The Montalvin Manor Community Scholarship was established to honor the spirit of the neighborhood that has nurtured generations of Bay Area families. Born from the post-war American Dream and built on a foundation of resilience, diversity, and community pride, Montalvin Manor has always believed in investing in its people.
+  </p>
+  <p>
+    This scholarship recognizes graduating high school seniors and current college students who embody the values of Montalvin Manor — hard work, civic engagement, and commitment to uplifting the communities around them.
+  </p>
+  <div class="highlight-box">
+    <p>
+      <strong>One (1) scholarship of $1,000</strong> will be awarded annually to a deserving student with demonstrated ties to the Montalvin Manor community and a commitment to higher education.
+    </p>
+  </div>
+</div>
+
+<!-- ── KEY DETAILS ── -->
+<div class="sch-section">
+  <div class="section-label">At a Glance</div>
+  <h2>Scholarship Details</h2>
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="info-label">Award Amount</div>
+      <div class="info-val">$1,000 (One-Time)</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Renewal</div>
+      <div class="info-val">Available — See Criteria</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Number of Awards</div>
+      <div class="info-val">1 Per Academic Year</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Application Deadline</div>
+      <div class="info-val">April 15 (Annual)</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Award Announcement</div>
+      <div class="info-val">May 30 (Annual)</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Disbursement</div>
+      <div class="info-val">Directly to Institution</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ELIGIBILITY ── -->
+<div class="sch-section">
+  <div class="section-label">Eligibility</div>
+  <h2>Who Should Apply</h2>
+  <p>
+    Applicants must meet <strong>all</strong> of the following criteria to be considered for the Montalvin Manor Community Scholarship:
+  </p>
+  <ul class="eligibility-list">
+    <li>Current resident of Montalvin Manor, OR a graduate of Montalvin Manor K–8 School, OR a graduate of a West Contra Costa Unified School District high school (including Pinole Valley, Kennedy, DeAnza, or Richmond High School)</li>
+    <li>Currently enrolled in, or accepted to, an accredited two-year college, four-year university, vocational program, or trade school</li>
+    <li>Minimum cumulative GPA of 2.5 (on a 4.0 scale) or equivalent</li>
+    <li>U.S. citizen or eligible non-citizen with lawful permanent residency</li>
+    <li>Demonstrated financial need (as evidenced by FAFSA or other documentation)</li>
+    <li>Has not previously received this scholarship (unless applying for renewal)</li>
+  </ul>
+  <p style="margin-top:1rem; font-size:0.85rem; color:var(--muted);">
+    There is no restriction on field of study. All academic disciplines and vocational paths are equally valued and encouraged to apply.
+  </p>
+</div>
+
+<!-- ── REQUIRED MATERIALS ── -->
+<div class="sch-section">
+  <div class="section-label">Application Materials</div>
+  <h2>What to Submit</h2>
+  <p>A complete application package must include all of the following:</p>
+  <ul class="materials-list">
+    <li>
+      <strong>Completed Application Form</strong> — Download and complete the official Montalvin Manor Scholarship Application. All fields are required.
+    </li>
+    <li>
+      <strong>Official Transcript</strong> — An official or unofficial transcript from your most recent educational institution, showing cumulative GPA. Transcripts must be current within the last academic term.
+    </li>
+    <li>
+      <strong>Personal Essay</strong> — A personal statement of 400–600 words responding to one (1) of the essay prompts listed below. Essays must be submitted as a PDF or Word document.
+    </li>
+    <li>
+      <strong>Two (2) Letters of Recommendation</strong> — At least one letter must be from a teacher, counselor, or academic mentor. The second may be from a community member, employer, or coach who is not a family member.
+    </li>
+    <li>
+      <strong>Proof of Residency or Community Ties</strong> — A utility bill, school enrollment record, lease agreement, or other documentation confirming current or previous Montalvin Manor/West Contra Costa residency.
+    </li>
+    <li>
+      <strong>Financial Need Documentation</strong> — A copy of your Student Aid Report (SAR) from FAFSA submission, or a brief financial statement (1 page maximum) explaining your financial circumstances.
+    </li>
+  </ul>
+  <p style="font-size:0.85rem; color:var(--muted); margin-top:0.8rem;">
+    Incomplete applications will not be reviewed. All materials must be received by the deadline. Digital submissions are preferred; physical submissions must be postmarked by April 15.
+  </p>
+</div>
+
+<!-- ── ESSAY PROMPTS ── -->
+<div class="sch-section">
+  <div class="section-label">Personal Essay</div>
+  <h2>Essay Prompts (Choose One)</h2>
+  <p>Respond to <strong>one</strong> of the following prompts in 400–600 words. Be specific, honest, and personal. The committee values authenticity over perfection.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-num">Prompt 1 — Community & Roots</div>
+    <p>Montalvin Manor was built on the belief that every family deserves a place to call home. Describe how your community — whether Montalvin Manor or another — has shaped your identity, your values, or your goals. How do you plan to give back to the community that raised you?</p>
+  </div>
+  <div class="prompt-card">
+    <div class="prompt-num">Prompt 2 — Overcoming Adversity</div>
+    <p>This scholarship honors the resilience that defines the Montalvin Manor spirit. Describe a significant challenge you have faced — personal, academic, or financial — and how you have grown from that experience. What does perseverance mean to you?</p>
+  </div>
+  <div class="prompt-card">
+    <div class="prompt-num">Prompt 3 — Future Goals & Impact</div>
+    <p>Where do you see yourself in ten years, and how will your education get you there? Describe your academic or career goals and how earning this scholarship will help you achieve them. How do you hope to make a difference — in your field, your family, or your community?</p>
+  </div>
+</div>
+
+<!-- ── SELECTION CRITERIA ── -->
+<div class="sch-section">
+  <div class="section-label">Evaluation</div>
+  <h2>Selection Criteria</h2>
+  <p>Applications are reviewed by an independent scholarship committee. Selections are made based on the following weighted criteria:</p>
+
+  <div class="criteria-row">
+    <span class="criteria-name">Personal Essay — Quality, Voice & Relevance</span>
+    <div style="display:flex;align-items:center;gap:0.8rem;">
+      <div class="criteria-bar-wrap"><div class="criteria-bar" style="width:35%;"></div></div>
+      <span class="criteria-weight">35%</span>
+    </div>
+  </div>
+  <div class="criteria-row">
+    <span class="criteria-name">Financial Need</span>
+    <div style="display:flex;align-items:center;gap:0.8rem;">
+      <div class="criteria-bar-wrap"><div class="criteria-bar" style="width:25%;"></div></div>
+      <span class="criteria-weight">25%</span>
+    </div>
+  </div>
+  <div class="criteria-row">
+    <span class="criteria-name">Letters of Recommendation</span>
+    <div style="display:flex;align-items:center;gap:0.8rem;">
+      <div class="criteria-bar-wrap"><div class="criteria-bar" style="width:20%;"></div></div>
+      <span class="criteria-weight">20%</span>
+    </div>
+  </div>
+  <div class="criteria-row">
+    <span class="criteria-name">Academic Achievement (GPA & Transcript)</span>
+    <div style="display:flex;align-items:center;gap:0.8rem;">
+      <div class="criteria-bar-wrap"><div class="criteria-bar" style="width:12%;"></div></div>
+      <span class="criteria-weight">12%</span>
+    </div>
+  </div>
+  <div class="criteria-row">
+    <span class="criteria-name">Community Ties & Involvement</span>
+    <div style="display:flex;align-items:center;gap:0.8rem;">
+      <div class="criteria-bar-wrap"><div class="criteria-bar" style="width:8%;"></div></div>
+      <span class="criteria-weight">8%</span>
+    </div>
+  </div>
+
+  <p style="font-size:0.83rem; color:var(--muted); margin-top:1rem;">
+    The committee's decision is final. Scholarship recipients may be asked to provide a brief statement or photo for community recognition purposes.
+  </p>
+</div>
+
+<!-- ── IMPORTANT DATES ── -->
+<div class="sch-section">
+  <div class="section-label">Timeline</div>
+  <h2>Important Dates</h2>
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Milestone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>January 15</td>
+        <td>Application portal opens; materials available for download</td>
+      </tr>
+      <tr>
+        <td>March 1</td>
+        <td>Recommended deadline for letters of recommendation requests</td>
+      </tr>
+      <tr>
+        <td>April 1</td>
+        <td>FAFSA/financial documentation submission reminder</td>
+      </tr>
+      <tr>
+        <td>April 15</td>
+        <td><strong>Application deadline</strong> — all materials must be received</td>
+      </tr>
+      <tr>
+        <td>April 16–May 15</td>
+        <td>Committee review period</td>
+      </tr>
+      <tr>
+        <td>May 30</td>
+        <td>Scholarship recipient announced</td>
+      </tr>
+      <tr>
+        <td>July 1</td>
+        <td>Funds disbursed directly to recipient's institution</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── RENEWAL ── -->
+<div class="sch-section">
+  <div class="section-label">Renewal</div>
+  <h2>Scholarship Renewal Policy</h2>
+  <p>
+    Recipients may apply for renewal of the scholarship for up to two (2) additional academic years, provided they meet the following conditions:
+  </p>
+  <ul class="eligibility-list">
+    <li>Maintained a cumulative GPA of 2.5 or higher in the preceding academic year</li>
+    <li>Enrolled full-time (12+ credits) or part-time with documented extenuating circumstances</li>
+    <li>Submitted a brief renewal essay (250 words) describing academic progress and continued goals</li>
+    <li>Demonstrated continued financial need</li>
+  </ul>
+  <p style="font-size:0.85rem; color:var(--muted); margin-top:0.8rem;">
+    Renewal applications follow the same annual deadline of April 15. Renewal is not guaranteed and is subject to available funds and committee review.
+  </p>
+</div>
+
+<!-- ── HOW TO SUBMIT ── -->
+<div class="sch-section">
+  <div class="section-label">How to Apply</div>
+  <h2>Submission Instructions</h2>
+  <p>
+    Compile all required materials into a <strong>single PDF document</strong> or a clearly organized email folder. Applications are accepted digitally or by mail.
+  </p>
+
+  <div class="submit-box">
+    <h3>Submit Your Application</h3>
+    <p><strong>Email:</strong> scholarships@montalvinmanorcommunity.org</p>
+    <p><strong>Subject Line:</strong> [Your Full Name] — Montalvin Manor Scholarship Application [Year]</p>
+    <p><strong>Mailing Address:</strong> Montalvin Manor Community Scholarship Committee<br>
+    c/o [Organization Name], [Street Address], San Pablo, CA 94806</p>
+    <p><strong>Application Deadline:</strong> April 15 (postmarked or received by 11:59 PM PT)</p>
+    <div class="submit-note">
+      Questions about the application process? Email us at the address above with the subject line "Scholarship Inquiry." We aim to respond within 3–5 business days. No phone inquiries, please.
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="sch-footer">
+  <strong style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--bark);">
+    Montalvin Manor Community Scholarship
+  </strong><br>
+  Contra Costa County, California &nbsp;·&nbsp; Unincorporated West County<br>
+  <em style="font-size:0.72rem;">This scholarship is not affiliated with any state or federal government agency.<br>
+  All information subject to change. Check with the scholarship committee for the most current guidelines.</em>
+</div>
+
+<script>
+  function copyAll(btn) {
+    // Gather visible text content
+    const body = document.body.cloneNode(true);
+    // Remove toolbar
+    body.querySelectorAll('.copy-toolbar').forEach(el => el.remove());
+    const text = body.innerText || body.textContent;
+    navigator.clipboard.writeText(text.replace(/\n{3,}/g, '\n\n').trim()).then(() => {
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('success');
+      setTimeout(() => { btn.textContent = '⎘ Copy All Text'; btn.classList.remove('success'); }, 2000);
+    });
+  }
+
+  function copyHTML(btn) {
+    const clone = document.documentElement.outerHTML;
+    navigator.clipboard.writeText(clone).then(() => {
+      btn.textContent = '✓ HTML Copied!';
+      btn.classList.add('success');
+      setTimeout(() => { btn.textContent = '⎘ Copy HTML'; btn.classList.remove('success'); }, 2500);
+    });
+  }
+</script>
+
+</body>
+</html>
